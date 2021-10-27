@@ -22,6 +22,7 @@ type Zerlegungszeugen = [Zerlegungszeuge]
 
 ist_tzr :: Zeichenreihe -> Teilzeichenreihe -> IstTeilzeichenreihe
 ist_tzr zeichenreihe teilzeichenreihe
+  | length(zeichenreihe) < length (teilzeichenreihe) = False
   | zeichenreihe == "" = False
   | checkSim zeichenreihe teilzeichenreihe = True
   | not (checkSim zeichenreihe teilzeichenreihe) = ist_tzr (tail zeichenreihe) teilzeichenreihe
@@ -30,6 +31,7 @@ ist_tzr zeichenreihe teilzeichenreihe
 checkSim :: Zeichenreihe -> Teilzeichenreihe -> IstTeilzeichenreihe
 checkSim zeichenreihe teilzeichenreihe
   | teilzeichenreihe == "" = True
+  | zeichenreihe == "" = False
   | head zeichenreihe == head teilzeichenreihe = checkSim (tail zeichenreihe) (tail teilzeichenreihe)
   | head zeichenreihe /= head teilzeichenreihe = False
 
@@ -101,8 +103,8 @@ wieOft = countTeil
 countTeil :: Zeichenreihe -> Teilzeichenreihe -> Int
 countTeil zeichenreihe teilzeichenreihe
   | not (ist_tzr zeichenreihe teilzeichenreihe) = 0
-  | teilzeichenreihe == "" = length zeichenreihe + 1
   | zeichenreihe == "" = 0
+  | teilzeichenreihe == "" = length zeichenreihe + 1
   | checkSim zeichenreihe teilzeichenreihe = 1 + countTeil (tail zeichenreihe) teilzeichenreihe
   | not (checkSim zeichenreihe teilzeichenreihe) = 0 + countTeil (tail zeichenreihe) teilzeichenreihe
 
