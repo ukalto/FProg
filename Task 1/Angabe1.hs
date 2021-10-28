@@ -89,7 +89,7 @@ createCharArray z t textDavor
   
       
 toStringArray :: Zeichenreihe -> Teilzeichenreihe -> Teilzeichenreihe -> Zerlegungszeugen
-toStringArray textDavor teilzeichenreihe textDanach  = [(textDavor, teilzeichenreihe, textDanach)]
+toStringArray textDavor teilzeichenreihe textDanach = [(textDavor, teilzeichenreihe, textDanach)]
 
 {- Knapp, aber gut nachvollziehbar geht tzr_zeugen folgendermassen vor:
    ...
