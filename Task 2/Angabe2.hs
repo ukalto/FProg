@@ -48,6 +48,11 @@ type Abzuweisende      = [VorUndNachname]
 type Kontrollzeitpunkt = (Datum,Uhrzeit)
 data Kontrollergebnis  = Einlassen | Abweisen | Ungueltig deriving (Eq,Show)
 
+mickey = P (Vorname "Mickey") (Nachname "Mouse")
+-- timez
+xmas20 :: Kontrollzeitpunkt
+xmas20 = (D XXIV Dez 20, U (Schlag, Sechs, NM))
+
 -- Aufgabe A.2
 instance Ord Uhrzeit where
   (U (x1,y1,z1)) <= (U (x2,y2,z2))
@@ -79,6 +84,7 @@ checkDreiG :: (DreiG_Status, Kontrollzeitpunkt) -> Kontrollergebnis
 checkDreiG (_,(kDat,kUhr)) 
    | validateDate(kDat) == False = Ungueltig
 checkDreiG (Genesen,k) = Einlassen
+checkDreiG (Geimpft (Sputnik, _), _) = Abweisen
 checkDreiG (Geimpft (JundJ,Einmal), k) = Einlassen
 checkDreiG (Geimpft (i,Zweimal), k) = Einlassen
 checkDreiG (Getestet PCR tDat tUhr, (kDat,kUhr)) = checkTest(PCR,tDat,kDat,tUhr,kUhr)
@@ -89,6 +95,7 @@ checkZweiEinHalbG :: (DreiG_Status, Kontrollzeitpunkt) -> Kontrollergebnis
 checkZweiEinHalbG (_,(kDat,kUhr)) 
    | validateDate(kDat) == False = Ungueltig
 checkZweiEinHalbG (Genesen,k) = Einlassen
+checkZweiEinHalbG (Geimpft (Sputnik, _), _) = Abweisen
 checkZweiEinHalbG (Geimpft (JundJ,Einmal), k) = Einlassen
 checkZweiEinHalbG (Geimpft (i,Zweimal), k) = Einlassen
 checkZweiEinHalbG (Getestet PCR tDat tUhr, (kDat,kUhr)) = checkTest(PCR,tDat,kDat,tUhr,kUhr)
@@ -98,6 +105,7 @@ checkZweiG :: (DreiG_Status, Kontrollzeitpunkt) -> Kontrollergebnis
 checkZweiG (_,(kDat,kUhr)) 
    | validateDate(kDat) == False = Ungueltig
 checkZweiG (Genesen,k) = Einlassen
+checkZweiG (Geimpft (Sputnik, _), _) = Abweisen
 checkZweiG (Geimpft (JundJ,Einmal), k) = Einlassen
 checkZweiG (Geimpft (i,Zweimal), k) = Einlassen
 checkZweiG (_, k) = Abweisen
@@ -143,8 +151,8 @@ validateDate :: Datum -> Bool
 validateDate(D day month year) =
    if((month == Apr || month == Jun || month == Sep || month == Nov) && day > XXX) -- more than 30 days
       then False 
-      else if((year`mod`4 == 0 || year`mod`100 == 0 && year`mod`400 == 0) && (month == Feb && day > XXIX)) -- Leapyear Feb more than 29 days
-         then False  
+      else if((year`mod`4 == 0 || (year`mod`100 == 0 && year`mod`400 == 0)) && (month == Feb && day <= XXIX)) -- Leapyear Feb more than 29 days
+         then True   
          else if(month == Feb && day > XXVIII) -- Feb more than 28 days
             then False
             else True 
