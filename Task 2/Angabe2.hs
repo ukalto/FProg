@@ -153,11 +153,13 @@ validateDate :: Datum -> Bool
 validateDate(D day month year) =
    if(month == Apr || month == Jun || month == Sep || month == Nov) && day > XXX -- more than 30 days
       then False
-      else if(year`mod`4 == 0 || (year`mod`100 == 0 && year`mod`400 == 0)) && (month == Feb && day <= XXIX) -- Leapyear Feb more than 29 days
-         then True
-         else if(month == Feb && day > XXVIII) -- Feb more than 28 days
-            then False
-            else True
+      else if((year < 100 && year`mod`4 == 0) && (month == Feb && day <= XXIX)) 
+         then True 
+         else if((year`mod`100 == 0 && year`mod`400 == 0) && (month == Feb && day <= XXIX)) -- Leapyear Feb more than 29 days
+            then True
+            else if(month == Feb && day > XXVIII) -- Feb more than 28 days
+               then False
+               else True
 
 validateTime :: (Uhrzeit, Uhrzeit, Int, Int) -> Bool
 validateTime (U (tvhds, thour, tvnm), U (kvhds, khour, kvnm), dayDiff, gueltigkeitsTage) =
