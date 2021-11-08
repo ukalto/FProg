@@ -36,7 +36,7 @@ m3x2 = (M [[1,2],[3,4],[5,6]])
 m3xinvalid = (M [[1,2,3],[4,5],[6]])
 m3xinvalid2 = (M [[1,2,3],[],[6]])
 m3x0 = (M [[],[],[]])
-mempty = (M [])
+mmempty = (M [])
 mnegative = (M [[-1, -2, -4], [-8, -22, -4]])
 mzero = (M [[0, 0, 0], [0, 0, 0]])
 
@@ -111,7 +111,7 @@ instance Num Matrix where
     | otherwise = M []
 
  signum (M x)
-    | matrixtyp (M x) == KeineMatrix = M []
+    | matrixtyp (M x) == KeineMatrix = error "Vorzeichenfunktion undefiniert"
     | length x == checkSig x = 1
     | checkSig x == 0 = -1
     | length x*2 == checkSig x = 0

@@ -90,7 +90,7 @@
 >     | otherwise = M []
 > 
 >  signum (M x)
->     | matrixtyp (M x) == KeineMatrix = M []
+>     | matrixtyp (M x) == KeineMatrix = error "Vorzeichenfunktion undefiniert"
 >     | length x == checkSig x = 1
 >     | checkSig x == 0 = -1
 >     | length x*2 == checkSig x = 0

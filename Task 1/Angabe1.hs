@@ -1,5 +1,7 @@
 module Angabe1 where
 
+{-# ANN module "HLint: ignore Use camelCase" #-}
+
 {- 1. Vervollstaendigen Sie gemaess Angabentext!
    2. Vervollständigen Sie auch die vorgegebenen Kommentaranfänge!
    3. Loeschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!

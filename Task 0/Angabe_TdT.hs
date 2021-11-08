@@ -1,5 +1,7 @@
 module Angabe_TdT where
 
+{-# ANN module "HLint: ignore Use camelCase" #-}
+
 {- 1. Vervollstaendigen Sie gemaess Angabentext!
    2. Löschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
    3. Achten Sie darauf, dass Gruppe Leserechte fuer Ihre Abgabedatei hat!

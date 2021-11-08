@@ -1,0 +1,161 @@
+m1 = (M [[1]])
+m1_2 = (M [[2]])
+m3x3 = (M [[5, 10, 15], [3, 6, 9], [1, 2, 3]])
+m3x3_2 = (M [[5, 10, 15], [4, 6, 9], [1, 2, 3]])
+minvalid = (M [[1, 2, 3], [2, 3], [5, 6, 7]])
+m3x5 = (M [[1, 2, 3, 4, 5], [10, 9, 8, 7, 6], [3, 4, 5, 6, 7]])
+m3x5_2 = (M [[5, 5, 5, 5, 5], [0, 9, 3, 7, 8], [3, 3, 2, 3, 7]])
+m5x2 = (M [[12, 21], [51, 9], [7, 4], [0, 8], [6, 9]])
+m5x2_2 = (M [[12, 1], [1, 9], [7, 49], [9, 8], [0, 0]])
+m2x4 = (M [[0, 1, 2, 4], [91, 42, 43, 8]])
+m2x4_negative = (M [[0,-1,-2,-4], [-91,-42,-43,-8]])
+m2x2 = (M [[1,2],[3,4]])
+m2x2_2 = (M [[20,20],[30,40]])
+m3x2 = (M [[1,2],[3,4],[5,6]])
+m3xinvalid = (M [[1,2,3],[4,5],[6]])
+m3xinvalid2 = (M [[1,2,3],[],[6]])
+m3x0 = (M [[],[],[]])
+mmempty = (M [])
+mnegative = (M [[-1, -2, -4], [-8, -22, -4]])
+mzero = (M [[0, 0, 0], [0, 0, 0]])
+
+
+Aufgabe A.1:
+
+show m1
+show minvalid
+show m2x4
+show mmempty 
+show m3x0
+show m3xinvalid
+
+"([1])"
+"([1,2,3] [2,3] [5,6,7])"
+"([0,1,2,4] [91,42,43,8])"
+"()"
+"([] [] [])"
+"([1,2,3] [4,5] [6])"
+
+
+Aufgabe A.2:
+
+matrixtyp minvalid
+matrixtyp m3x0
+matrixtyp mmempty 
+matrixtyp m5x2
+matrixtyp m2x4
+matrixtyp m1
+
+KeineMatrix
+KeineMatrix
+KeineMatrix
+Mat (5,2)
+Mat (2,4)
+Mat (1,1)
+
+
+Aufgabe A.3:
+
+m1 == m2x4
+minvalid == minvalid
+m5x2 == m5x2
+m2x4 == minvalid
+m3x0 == m3x0
+m1 /= m1
+m3x2 /= minvalid
+m3xinvalid2 /= m3xinvalid2
+m5x2 /= m2x2
+m1 /= m1_2
+
+False 
+Exception: Gleichheit undefiniert
+True
+Exception: Gleichheit undefiniert
+Exception: Gleichheit undefiniert
+False 
+Exception: Ungleichheit undefiniert
+Exception: Ungleichheit undefiniert
+True
+True
+
+
+Aufgabe A.4:
+
+m1 + m1_2
+m5x2 + m5x2_2
+m3x0 + m2x4
+m5x2 + m2x4
+minvalid + m1
+
+([3])
+([24,22] [52,18] [14,53] [9,16] [6,9])
+()
+()
+()
+
+m1 * m1
+minvalid * m1
+m3x3 * m3x3
+m3x5 * m2x2
+m2x4 * m2x2
+m2x2 * m2x4
+m3x5 * m5x2_2
+
+([1])
+()
+([70,140,210] [42,84,126] [14,28,42])
+()
+()
+([182,85,88,20] [364,171,178,44])
+([71,198] [248,539] [129,332])
+
+
+m5x2 - m5x2_2
+minvalid - m3xinvalid2
+m1 - m1_2
+
+([0,20] [50,0] [0,-45] [-9,0] [6,9])
+()
+([-1])
+
+negate m1
+negate m3xinvalid2
+negate m2x4
+negate m2x4_negative
+
+([-1])
+()
+([0,-1,-2,-4] [-91,-42,-43,-8])
+([0,1,2,4] [91,42,43,8])
+
+abs m1
+abs m3xinvalid
+abs m2x4_negative
+
+([1])
+()
+([0,1,2,4] [91,42,43,8])
+
+signum mzero
+signum m1
+signum mnegative
+signum m2x4
+signum minvalid
+signum mmempty 
+signum m3x0
+
+([0])
+([1])
+([-1])
+Exception: Vorzeichenfunktion undefiniert
+()
+()
+()
+
+fromInteger 4 :: Matrix
+fromInteger (-12) :: Matrix
+fromInteger 0 :: Matrix
+
+([4])
+([-12])
+([0])
