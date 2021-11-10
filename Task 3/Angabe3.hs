@@ -2,10 +2,11 @@ module Angabe3 where
 import Data.List
 
 {-# ANN module "HLint: ignore Use camelCase" #-}
+{-# ANN module "HLint: refact:Redundant if" #-}
 
 -- 1. Vervollstaendigen Sie gemaess Angabentext!
 -- 2. Vervollst�ndigen Sie auch die vorgegebenen Kommentaranf�nge!
--- 3. Loeschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
+-- 3. Loeschen Sie keine Deklarationen aus diesem Rahmenprogramm, auch nicht die Modulanweisug!
 -- 4. Achten Sie darauf, dass `Gruppe' Leserechte fuer Ihre Abgabedatei hat!
 
 type Nat1 = Int

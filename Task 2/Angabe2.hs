@@ -1,6 +1,7 @@
 module Angabe2 where
 
 {-# ANN module "HLint: ignore Use camelCase" #-}
+{-# ANN module "HLint: refact:Redundant if" #-}
 
 {- 1. Vervollstaendigen Sie gemaess Angabentext!
    2. Vervollständigen Sie auch die vorgegebenen Kommentaranfänge!

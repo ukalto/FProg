@@ -1,0 +1,97 @@
+gp1 = GP "Max Mustermann" (D XXIV Apr 2020)
+gp2 = GP "Max Mustermann" (D VI Mar 2014)
+gp3 = GP "Felix Kreuz" (D XXIX Feb 2019)
+gp4 = GP "Jana Silver" (D XXI Nov 2020)
+gp5 = GP "Zoe Miller" (D XXX Feb 2016)
+
+kb1 = (gp1, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
+kb2 = (gp3, Zahlung (C 4271) DreiProzent (D XXXI Sep 2020))
+kb3 = (gp4, Zahlung (C 3113) FuenfProzent (D VIII Jan 2021))
+kb4 = (gp5, Zahlung (C 2651) DreiProzent(D IV Dez 2020))
+kb5 = (gp1, Gutschrift (C 5130) (D XXXI Feb 2019))
+kb6 = (gp1, Zahlung (C 7430) DreiProzent (D XIV Dez 2019))
+kb7 = (gp2, Gutschrift (C 2120) (D XXXI Mar 2019))
+kb8 = (gp1, Zahlung (C 5130) FuenfProzent (D II Jan 2020))
+kb9 = (gp1, Gutschrift (C 4874) (D XXIII Aug 2020))
+kb10 = (gp1, Gutschrift (C 2400) (D II Sep 2020))
+
+kb11 = (gp1, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
+kb12 = (gp2, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
+kb13 = (gp1, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
+
+kkb1 = KB [kb1,kb2,kb3,kb4,kb5]
+kkb2 = KB [kb5,kb6,kb7,kb8]
+kkb3 = KB [kb8,kb9]
+kkb4 = KB [kb5,kb6,kb7,kb8,kb9,kb10]
+
+Aufgabe A.1:
+
+waup kb1
+waup kb2
+waup kb3
+waup kb4
+waup kb5
+
+(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},AP_Zahlung {netto = C {cents = 1600}, zahlungsdatum = D {tag = IV, monat = Dez, jahr = 2020}})
+(GP {partner = "Felix Kreuz", seit = D {tag = I, monat = Mar, jahr = 2019}},AP_Zahlung {netto = C {cents = 4143}, zahlungsdatum = D {tag = I, monat = Okt, jahr = 2020}})
+(GP {partner = "Jana Silver", seit = D {tag = XXI, monat = Nov, jahr = 2020}},AP_Zahlung {netto = C {cents = 2958}, zahlungsdatum = D {tag = VIII, monat = Jan, jahr = 2021}})
+(GP {partner = "Zoe Miller", seit = D {tag = I, monat = Mar, jahr = 2016}},AP_Zahlung {netto = C {cents = 2572}, zahlungsdatum = D {tag = IV, monat = Dez, jahr = 2020}})
+(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},P_Gutschrift {gutschrift = C {cents = 5130}, gutschriftsdatum = D {tag = I, monat = Mar, jahr = 2019}})
+
+Aufgabe A.2:
+
+konsolidiere kkb1
+konsolidiere kkb2
+konsolidiere kkb3
+konsolidiere kkb4
+
+KKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 16, cent = 0}, zahlungsdatum' = D {tag = IV, monat = Dez, jahr = 2020}}),
+ (GP {partner = "Felix Kreuz", seit = D {tag = I, monat = Mar, jahr = 2019}},K_Zahlung {ec_netto = EC {euro = 41, cent = 43}, zahlungsdatum' = D {tag = I, monat = Okt, jahr = 2020}}),
+ (GP {partner = "Jana Silver", seit = D {tag = XXI, monat = Nov, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 29, cent = 58}, zahlungsdatum' = D {tag = VIII, monat = Jan, jahr = 2021}}),
+ (GP {partner = "Zoe Miller", seit = D {tag = I, monat = Mar, jahr = 2016}},K_Zahlung {ec_netto = EC {euro = 25, cent = 72}, zahlungsdatum' = D {tag = IV, monat = Dez, jahr = 2020}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Jan, jahr = 2018}},K_Gutschrift {ec_gutschrift = EC {euro = 51, cent = 30}, gutschriftsdatum' = D {tag = I, monat = Mar, jahr = 2019}})]
+
+KKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 51, cent = 30}, gutschriftsdatum' = D {tag = I, monat = Mar, jahr = 2019}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 72, cent = 8}, zahlungsdatum' = D {tag = XIV, monat = Dez, jahr = 2019}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = VI, monat = Mar, jahr = 2014}},K_Gutschrift {ec_gutschrift = EC {euro = 21, cent = 20}, gutschriftsdatum' = D {tag = XXXI, monat = Mar, jahr = 2019}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 48, cent = 74}, zahlungsdatum' = D {tag = II, monat = Jan, jahr = 2020}})]
+
+KKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 48, cent = 74}, zahlungsdatum' = D {tag = II, monat = Jan, jahr = 2020}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 48, cent = 74}, gutschriftsdatum' = D {tag = XXIII, monat = Aug, jahr = 2020}})]
+
+KKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 51, cent = 30}, gutschriftsdatum' = D {tag = I, monat = Mar, jahr = 2019}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 72, cent = 8}, zahlungsdatum' = D {tag = XIV, monat = Dez, jahr = 2019}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = VI, monat = Mar, jahr = 2014}},K_Gutschrift {ec_gutschrift = EC {euro = 21, cent = 20}, gutschriftsdatum' = D {tag = XXXI, monat = Mar, jahr = 2019}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 48, cent = 74}, zahlungsdatum' = D {tag = II, monat = Jan, jahr = 2020}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 48, cent = 74}, gutschriftsdatum' = D {tag = XXIII, monat = Aug, jahr = 2020}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 24, cent = 0}, gutschriftsdatum' = D {tag = II, monat = Sep, jahr = 2020}})]
+
+Aufgabe A.3:
+
+saldo gp1 (konsolidiere kkb2)
+saldo gp1 (konsolidiere kkb3)
+saldo gp1 (konsolidiere kkb4)
+
+Zahlungssaldo {zs = EC {euro = 69, cent = 52}}
+Ausgeglichen
+saldo gp1 (konsolidiere kkb4)
+
+Aufgabe A.4:
+
+salidiere kkb1
+salidiere kkb2
+salidiere kkb3
+salidiere kkb4
+
+SKB [(GP {partner = "Felix Kreuz", seit = D {tag = I, monat = Mar, jahr = 2019}},Zahlungssaldo {zs = EC {euro = 41, cent = 43}}),
+ (GP {partner = "Jana Silver", seit = D {tag = XXI, monat = Nov, jahr = 2020}},Zahlungssaldo {zs = EC {euro = 29, cent = 58}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},Forderungssaldo {fs = EC {euro = 35, cent = 30}}),
+ (GP {partner = "Zoe Miller", seit = D {tag = I, monat = Mar, jahr = 2016}},Zahlungssaldo {zs = EC {euro = 25, cent = 72}})]
+
+SKB [(GP {partner = "Max Mustermann", seit = D {tag = VI, monat = Mar, jahr = 2014}},Forderungssaldo {fs = EC {euro = 21, cent = 20}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},Zahlungssaldo {zs = EC {euro = 69, cent = 52}})]
+
+SKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},Ausgeglichen)]
+
+SKB [(GP {partner = "Max Mustermann", seit = D {tag = VI, monat = Mar, jahr = 2014}},Forderungssaldo {fs = EC {euro = 21, cent = 20}}),
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},Forderungssaldo {fs = EC {euro = 3, cent = 22}})]
