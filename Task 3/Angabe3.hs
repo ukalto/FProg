@@ -1,8 +1,7 @@
 module Angabe3 where
-import Data.List
+import Data.List ( transpose )
 
 {-# ANN module "HLint: ignore Use camelCase" #-}
-{-# ANN module "HLint: refact:Redundant if" #-}
 
 -- 1. Vervollstaendigen Sie gemaess Angabentext!
 -- 2. Vervollst�ndigen Sie auch die vorgegebenen Kommentaranf�nge!

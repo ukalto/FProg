@@ -49,7 +49,7 @@ KKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 
  (GP {partner = "Felix Kreuz", seit = D {tag = I, monat = Mar, jahr = 2019}},K_Zahlung {ec_netto = EC {euro = 41, cent = 43}, zahlungsdatum' = D {tag = I, monat = Okt, jahr = 2020}}),
  (GP {partner = "Jana Silver", seit = D {tag = XXI, monat = Nov, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 29, cent = 58}, zahlungsdatum' = D {tag = VIII, monat = Jan, jahr = 2021}}),
  (GP {partner = "Zoe Miller", seit = D {tag = I, monat = Mar, jahr = 2016}},K_Zahlung {ec_netto = EC {euro = 25, cent = 72}, zahlungsdatum' = D {tag = IV, monat = Dez, jahr = 2020}}),
- (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Jan, jahr = 2018}},K_Gutschrift {ec_gutschrift = EC {euro = 51, cent = 30}, gutschriftsdatum' = D {tag = I, monat = Mar, jahr = 2019}})]
+ (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 51, cent = 30}, gutschriftsdatum' = D {tag = I, monat = Mar, jahr = 2019}})]
 
 KKB [(GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Gutschrift {ec_gutschrift = EC {euro = 51, cent = 30}, gutschriftsdatum' = D {tag = I, monat = Mar, jahr = 2019}}),
  (GP {partner = "Max Mustermann", seit = D {tag = XXIV, monat = Apr, jahr = 2020}},K_Zahlung {ec_netto = EC {euro = 72, cent = 8}, zahlungsdatum' = D {tag = XIV, monat = Dez, jahr = 2019}}),
@@ -74,14 +74,14 @@ saldo gp1 (konsolidiere kkb4)
 
 Zahlungssaldo {zs = EC {euro = 69, cent = 52}}
 Ausgeglichen
-saldo gp1 (konsolidiere kkb4)
+Forderungssaldo {fs = EC {euro = 3, cent = 22}}
 
 Aufgabe A.4:
 
-salidiere kkb1
-salidiere kkb2
-salidiere kkb3
-salidiere kkb4
+saldiere kkb1
+saldiere kkb2
+saldiere kkb3
+saldiere kkb4
 
 SKB [(GP {partner = "Felix Kreuz", seit = D {tag = I, monat = Mar, jahr = 2019}},Zahlungssaldo {zs = EC {euro = 41, cent = 43}}),
  (GP {partner = "Jana Silver", seit = D {tag = XXI, monat = Nov, jahr = 2020}},Zahlungssaldo {zs = EC {euro = 29, cent = 58}}),

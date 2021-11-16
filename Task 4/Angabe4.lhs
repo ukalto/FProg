@@ -139,7 +139,7 @@
 > 
 > -- Aufgabe A.4
 > 
-> newtype SaldiertesKassabuch = SKB [(Geschaeftspartner,Saldo)] deriving (Show)
+> newtype SaldiertesKassabuch = SKB [(Geschaeftspartner,Saldo)] deriving (Eq,Show)
 > 
 > saldiere :: Kassabuch -> SaldiertesKassabuch
 > saldiere kb = SKB (saldiereArray ((getSortedPartner kb), kb))

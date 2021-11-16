@@ -12,31 +12,47 @@ import Data.List
 
 -- Datenstrukturen fuer eine einfache Buchhaltung:
 
-gp1 = GP "Max Mustermann" (D XXIV Apr 2020)
-gp2 = GP "Max Mustermann" (D VI Mar 2014)
-gp3 = GP "Felix Kreuz" (D XXIX Feb 2019)
-gp4 = GP "Jana Silver" (D XXI Nov 2020)
-gp5 = GP "Zoe Miller" (D XXX Feb 2016)
+mattBerry = GP "Matt Berry" (D XX Jun 2015)
 
-kb1 = (gp1, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
-kb2 = (gp3, Zahlung (C 4271) DreiProzent (D XXXI Sep 2020))
-kb3 = (gp4, Zahlung (C 3113) FuenfProzent (D VIII Jan 2021))
-kb4 = (gp5, Zahlung (C 2651) DreiProzent(D IV Dez 2020))
-kb5 = (gp1, Gutschrift (C 5130) (D XXXI Feb 2019))
-kb6 = (gp1, Zahlung (C 7430) DreiProzent (D XIV Dez 2019))
-kb7 = (gp2, Gutschrift (C 2120) (D XXXI Mar 2019))
-kb8 = (gp1, Zahlung (C 5130) FuenfProzent (D II Jan 2020))
-kb9 = (gp1, Gutschrift (C 4874) (D XXIII Aug 2020))
-kb10 = (gp1, Gutschrift (C 2400) (D II Sep 2020))
+nadiaCitrus = GP "Nadia Citrus" (D XXIX Feb 2000)
 
-kb11 = (gp1, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
-kb12 = (gp2, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
-kb13 = (gp1, Zahlung (C 1600) KeinSkonto (D IV Dez 2020))
+jasonFruit = GP "Jason Fruit" (D XXXI Jun 2014)
 
-kkb1 = KB [kb1,kb2,kb3,kb4,kb5]
-kkb2 = KB [kb5,kb6,kb7,kb8]
-kkb3 = KB [kb8,kb9]
-kkb4 = KB [kb5,kb6,kb7,kb8,kb9,kb10]
+jasonFruit_AP = GP "Jason Fruit" (D I Jul 2014)
+
+-- ----------------------------------------------------------------------------
+-- Testdaten, Geschaeftsvorfall
+-- ----------------------------------------------------------------------------
+
+normaleZahlung = Zahlung (C 5000) KeinSkonto endeJuni
+
+normaleZahlung_AP = AP_Zahlung (C 5000) endeJuni
+
+dreiProzentSkontoZahlung = Zahlung (C 60000) DreiProzent endeJuni31
+
+dreiProzentSkontoZahlung_AP = AP_Zahlung (C 58200) anfangJuli
+
+fuenfProzentSkontoZahlung = Zahlung (C 5831245) FuenfProzent anfangJuli
+
+fuenfProzentSkontoZahlung_AP = AP_Zahlung (C 5539683) anfangJuli
+
+zehnProzentSkontoZahlung = Zahlung (C 5831245) ZehnProzent anfangJuli
+
+zehnProzentSkontoZahlung_AP = AP_Zahlung (C 5248121) anfangJuli
+
+gutschriftDatumUngueltig = Gutschrift (C 1000) endeFebruar
+
+gutschriftDatumUngueltig_AP = P_Gutschrift (C 1000) anfangMaerz
+
+endeJuni = D XXX Jun 2016
+
+endeJuni31 = D XXXI Jun 2016
+
+anfangJuli = D I Jul 2016
+
+endeFebruar = D XXIX Feb 2017
+
+anfangMaerz = D I Mar 2017
 
 type Nat1    = Int
 type Name    = String
@@ -165,7 +181,7 @@ checkGeschaeftspartner gp ((kkbgp, _):xs)
 
 -- Aufgabe A.4
 
-newtype SaldiertesKassabuch = SKB [(Geschaeftspartner,Saldo)] deriving (Show)
+newtype SaldiertesKassabuch = SKB [(Geschaeftspartner,Saldo)] deriving (Eq,Show)
 
 saldiere :: Kassabuch -> SaldiertesKassabuch
 saldiere kb = SKB (saldiereArray ((getSortedPartner kb), kb))

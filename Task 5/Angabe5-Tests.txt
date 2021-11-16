@@ -1,0 +1,107 @@
+Addition:
+II+IX
+N+N
+X+X
+F+X
+II+VII
+
+F
+N
+F
+F
+IX
+
+Subtraktion:
+X-X
+IX-X
+X-IX
+N-N
+F-N
+
+N
+F
+I
+N
+F
+
+Multiplikation:
+II*IV
+N*III
+F*II
+X*II
+X*I
+
+VIII
+N
+F
+F
+X
+
+fromInteger:
+fromInteger 8 :: Zahlraum_0_10 
+fromInteger 15 :: Zahlraum_0_10 
+fromInteger 0 :: Zahlraum_0_10 
+
+VIII
+F
+N
+
+signum: 
+signum II
+signum N
+signum X
+signum F
+
+I
+N
+I
+F
+
+negate:
+negate III
+negate X
+negate F
+negate N
+
+F
+F
+F
+N
+
+abs:
+abs X
+abs II
+abs N
+abs F
+
+X
+II
+N
+F
+
+show Funktion:
+show (Fkt (\z -> z + I))
+show (Fkt (\z -> z + X))
+show (Fkt (\z -> z + IV))
+
+"{(N,I),(I,II),(II,III),(III,IV),(IV,V),(V,VI),(VI,VII),(VII,VIII),(VIII,IX),(IX,X),(X,F),(F,F)}"
+"{(N,X),(I,F),(II,F),(III,F),(IV,F),(V,F),(VI,F),(VII,F),(VIII,F),(IX,F),(X,F),(F,F)}"
+"{(N,IV),(I,V),(II,VI),(III,VII),(IV,VIII),(V,IX),(VI,X),(VII,F),(VIII,F),(IX,F),(X,F),(F,F)}"
+
+Funktion == Funktion:
+(Fkt (\z -> z + III)) == (Fkt (\z -> z + II))
+(Fkt (\z -> z + IV)) == (Fkt (\z -> z + X))
+(Fkt (\z -> z + X)) == (Fkt (\z -> z + X))
+
+False
+False
+True
+
+Funktion /= Funktion:
+(Fkt (\z -> z + III)) /= (Fkt (\z -> z + II))
+(Fkt (\z -> z + IV)) /= (Fkt (\z -> z + X))
+(Fkt (\z -> z + X)) /= (Fkt (\z -> z + X))
+
+True
+True
+False
