@@ -1,3 +1,5 @@
+Aufgabe1:
+
 Addition:
 II+IX
 N+N
@@ -79,29 +81,267 @@ II
 N
 F
 
+Aufgabe 2:
+
 show Funktion:
 show (Fkt (\z -> z + I))
-show (Fkt (\z -> z + X))
-show (Fkt (\z -> z + IV))
-
 "{(N,I),(I,II),(II,III),(III,IV),(IV,V),(V,VI),(VI,VII),(VII,VIII),(VIII,IX),(IX,X),(X,F),(F,F)}"
+
+show (Fkt (\z -> z + X))
 "{(N,X),(I,F),(II,F),(III,F),(IV,F),(V,F),(VI,F),(VII,F),(VIII,F),(IX,F),(X,F),(F,F)}"
+
+show (Fkt (\z -> z + IV))
 "{(N,IV),(I,V),(II,VI),(III,VII),(IV,VIII),(V,IX),(VI,X),(VII,F),(VIII,F),(IX,F),(X,F),(F,F)}"
+
+show (Fkt (\z -> z * II))
+"{(N,N),(I,II),(II,IV),(III,VI),(IV,VIII),(V,X),(VI,F),(VII,F),(VIII,F),(IX,F),(X,F),(F,F)}"
+
+show (Fkt (\z -> z - I))
+"{(N,F),(I,N),(II,I),(III,II),(IV,III),(V,IV),(VI,V),(VII,VI),(VIII,VII),(IX,VIII),(X,IX),(F,F)}"
 
 Funktion == Funktion:
 (Fkt (\z -> z + III)) == (Fkt (\z -> z + II))
-(Fkt (\z -> z + IV)) == (Fkt (\z -> z + X))
-(Fkt (\z -> z + X)) == (Fkt (\z -> z + X))
+False
 
+(Fkt (\z -> z + IV)) == (Fkt (\z -> z + X))
 False
-False
+
+(Fkt (\z -> z + X)) == (Fkt (\z -> z + X))
 True
 
 Funktion /= Funktion:
 (Fkt (\z -> z + III)) /= (Fkt (\z -> z + II))
-(Fkt (\z -> z + IV)) /= (Fkt (\z -> z + X))
-(Fkt (\z -> z + X)) /= (Fkt (\z -> z + X))
+True
 
+(Fkt (\z -> z + IV)) /= (Fkt (\z -> z + X))
 True
-True
+
+(Fkt (\z -> z + X)) /= (Fkt (\z -> z + X))
 False
+
+Aufgabe3:
+
+Int:
+vereinige ([1,2,3]::[Int]) ([4,5]::[Int])
+[1,2,3,4,5]
+
+vereinige ([1,2,3]::[Int]) ([4,5,1]::[Int]) 
+[1,2,3,4,5]
+
+vereinige ([1,2,3]::[Int]) ([4,5,5]::[Int])
+Fehler
+
+schneide ([1,2,3]::[Int]) ([4,5,1,2]::[Int]) 
+[1,2]
+
+schneide ([1,2,3]::[Int]) ([4,5]::[Int])
+[]
+
+schneide ([1,2,3]::[Int]) ([4,5,5]::[Int])
+Fehler
+
+ziehe_ab ([1,2,3]::[Int]) ([4,5]::[Int])
+[1,2,3]
+
+ziehe_ab ([1,2,3]::[Int]) ([1,2,5]::[Int])
+[3]
+
+ziehe_ab ([1,2,3]::[Int]) ([1,2,5,5]::[Int])
+Fehler
+
+ist_teilmenge ([1,2,3]::[Int]) ([1,2,4,5,6]::[Int])
+False
+
+ist_teilmenge ([1,2,3]::[Int]) ([1,2]::[Int])
+False
+
+ist_teilmenge ([1,2,3]::[Int]) ([1,2,3,5,6]::[Int])
+True
+
+ist_teilmenge ([1,2,3]::[Int]) ([1,2,3,3,5,6]::[Int])
+Fehler
+
+anzahl 2 ([1,2,3]::[Int])
+1
+
+anzahl 4 ([1,2,3]::[Int])
+0
+anzahl 3 ([1,2,3,3]::[Int])
+Fehler
+
+anzahl 4 ([1,2,3,3]::[Int]) 
+Fehler
+
+Zahlraum_0_10:
+vereinige ([I,II,III]::[Zahlraum_0_10]) ([IV,V]::[Zahlraum_0_10])
+[I,II,III,IV,V]
+
+vereinige ([I,II,III]::[Zahlraum_0_10]) ([IV,V,I]::[Zahlraum_0_10]) 
+[I,II,III,IV,V]
+
+schneide ([I,II,III]::[Zahlraum_0_10]) ([IV,V,I,II]::[Zahlraum_0_10])
+[I,II]
+
+schneide ([I,II,III]::[Zahlraum_0_10]) ([IV,V]::[Zahlraum_0_10])
+[]
+
+ziehe_ab ([I,II,III]::[Zahlraum_0_10]) ([IV,V]::[Zahlraum_0_10])
+[I,II,III]
+
+ziehe_ab ([I,II,III]::[Zahlraum_0_10]) ([I,II,V]::[Zahlraum_0_10])
+[III]
+
+ist_teilmenge ([I,II]::[Zahlraum_0_10]) ([I,II,IV,V,VI]::[Zahlraum_0_10])
+True
+
+ist_teilmenge ([I,II,III]::[Zahlraum_0_10]) ([I,II,IV,V,VI]::[Zahlraum_0_10])
+False
+
+ist_teilmenge ([I,II,III]::[Zahlraum_0_10]) ([I,II]::[Zahlraum_0_10])
+False
+
+anzahl II ([I,II,III]::[Zahlraum_0_10])
+1
+
+anzahl I ([I,II,III,III]::[Zahlraum_0_10])
+Fehler
+
+anzahl VI ([I,II,III]::[Zahlraum_0_10])
+0
+
+ist_teilmenge ([I,II,III,III]::[Zahlraum_0_10]) ([I,II]::[Zahlraum_0_10])
+Fehler
+
+Funktion
+myF= Fkt (\x -> x + II)
+myF2= Fkt (\x -> I+ x+ I)
+myF3= Fkt (\x -> I* x)
+myF4= Fkt (\x -> x)
+
+vereinige ([myF]::[Funktion]) ([myF]::[Funktion])
+[{(N,II),(I,III),(II,IV),(III,V),(IV,VI),(V,VII),(VI,VIII),(VII,IX),(VIII,X),(IX,F),(X,F),(F,F)}]
+
+vereinige ([myF2]::[Funktion]) ([myF]::[Funktion])
+[{(N,II),(I,III),(II,IV),(III,V),(IV,VI),(V,VII),(VI,VIII),(VII,IX),(VIII,X),(IX,F),(X,F),(F,F)}]
+
+vereinige ([myF3]::[Funktion]) ([myF]::[Funktion])
+[{(N,N),(I,I),(II,II),(III,III),(IV,IV),(V,V),(VI,VI),(VII,VII),(VIII,VIII),(IX,IX),(X,X),(F,F)},{(N,II),(I,III),(II,IV),(III,V),(IV,VI),(V,VII),(VI,VIII),(VII,IX),(VIII,X),(IX,F),(X,F),(F,F)}]
+
+vereinige ([myF3]::[Funktion]) ([myF4]::[Funktion])
+[{(N,N),(I,I),(II,II),(III,III),(IV,IV),(V,V),(VI,VI),(VII,VII),(VIII,VIII),(IX,IX),(X,X),(F,F)}]
+
+schneide ([myF]::[Funktion]) ([myF]::[Funktion])
+[{(N,II),(I,III),(II,IV),(III,V),(IV,VI),(V,VII),(VI,VIII),(VII,IX),(VIII,X),(IX,F),(X,F),(F,F)}]
+
+schneide ([myF]::[Funktion]) ([myF2]::[Funktion])
+[{(N,II),(I,III),(II,IV),(III,V),(IV,VI),(V,VII),(VI,VIII),(VII,IX),(VIII,X),(IX,F),(X,F),(F,F)}]
+
+Aufgabe 4:
+
+Paar
+
+P (I,myF2) == P(V,myF)
+False
+
+P (I,myF2) == P(I,myF)
+True
+
+vereinige ([P (IV,7), P (II,9)] :: [Paar Zahlraum_0_10  Int ]) ([P (IV,7), P (VI,13)] :: [Paar Zahlraum_0_10  Int])
+[P (IV,7),P (II,9),P (VI,13)]
+
+schneide ([P (IV,7), P (II,9)] :: [Paar Zahlraum_0_10  Int ]) ([P (IV,7), P (VI,13)] :: [Paar Zahlraum_0_10  Int])
+[P (IV,7)]
+
+ziehe_ab  ([P (IV,7), P (II,9)] :: [Paar Zahlraum_0_10  Int ]) ([P (IV,7), P (VI,13)] :: [Paar Zahlraum_0_10  Int])
+[P (II,9)]
+
+ist_teilmenge ([P (IV,7), P (II,9)] :: [Paar Zahlraum_0_10  Int ]) ([P (IV,7), P (VI,13),P(II,9)] :: [Paar Zahlraum_0_10  Int])
+True
+
+ist_teilmenge ([P (IV,7), P (II,9)] :: [Paar Zahlraum_0_10  Int ]) ([P (IV,7), P (VI,13)] :: [Paar Zahlraum_0_10  Int])
+False
+
+sind_gleich ([P (IV,7), P (II,9),P (VI,13)] :: [Paar Zahlraum_0_10  Int ]) ([P (IV,7), P (VI,13),P(II,9)] :: [Paar Zahlraum_0_10  Int])
+True
+
+
+
+Baum
+
+sind_gleich [Knoten (Blatt 2) 2 (Blatt 3) ] [Knoten (Blatt 2) 2 (Blatt 3)]
+True
+
+sind_gleich [Knoten (Blatt 2) 2 (Blatt 3) ] [Knoten (Blatt 3) 2 (Blatt 2)]
+False
+
+
+
+Aufgabe 5:
+
+show (Fkt(\z -> z + II))
+"{(N,II)(I,III)(II,IV)(III,V)(IV,VI)(V,VII)(VI,VIII)(VII,IX)(VIII,X)(IX,F)(X,F)(F,F)}"
+
+show (ET (Fkt(\z -> z + II)))
+"{(N,II)(I,III)(II,IV)(III,V)(IV,VI)(V,VII)(VI,VIII)(VII,IX)(VIII,X)(IX,F)(X,F)(F,F)}"
+
+
+
+
+Aufgabe 6:
+
+schneide ([ET 1, ET 2, ET 3] :: [ElemTyp Int]) ([ET 1, ET 2] :: [ElemTyp Int]) 
+[1,2]
+
+ziehe_ab  ([ET 1,ET 2,ET 3,ET 44]:: [ElemTyp Int]) ([ET 1]:: [ElemTyp Int])
+[2,3,44]
+
+ist_teilmenge ([ET 1,ET 2, ET 37]:: [ElemTyp Int]) ([ET 1,ET 2,ET 3,ET 44]:: [ElemTyp Int])
+False
+
+ist_teilmenge  ([ET 1,ET 2]:: [ElemTyp Int]) ([ET 1,ET 2,ET 3,ET 44]:: [ElemTyp Int])
+True
+
+A7
+
+vereinige ([A [1, 2, 2], A [2, 4], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]]) ([ A [1, 2, 2], A [2, 4], A [1],D [X] , D [V]]:: [PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]])
+[A [1,2,2],A [2,4],A [1],D [VI,V],D [VII],D [X],D [V]]
+
+vereinige ([A [1, 2, 2], A [2, 4], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]]) ([ A [1, 2, 2, 3], A [2, 4,5], A [1],D [X,F] , D [V]]:: [PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]])
+[A [1,2,2],A [2,4],A [1],D [VI,V],D [VII],A [1,2,2,3],A [2,4,5],D [X,F],D [V]]
+
+schneide ([A [1, 2, 2], A [2, 4], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]]) ([ A [1, 2, 2], A [2, 4,5], A [1,2],D [X,F] , D [X,F]]:: [PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]])
+Error
+
+schneide ([A [1, 2, 2], A [2, 4], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]]) ([ A [1, 2, 2], A [2, 4,5], A [1],D [X,F] , D [V]]:: [PH_ElemTyp [Int] [Int] [Int] [Zahlraum_0_10] [Zahlraum_0_10]])
+[A [1,2,2],A [1]]
+
+
+schneide ([A [1, 2, 2], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]]) ([ A [1, 2, 2], A [2, 4,5], A [1],D [X,F] , D [V]]:: [PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]])
+[A [1,2,2],A [1]]
+
+ist_element (A [1]::PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]) ([A [1, 2, 2], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]])
+true
+
+sind_gleich ([A [1, 2, 2], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]]) ([A [1, 2, 2], A [1], D [VI,V ], D [VII], E [P (1,V)]]::[PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]])
+false
+
+vereinige  ([A [1, 2, 2], A [1], D [VI,V ], D [VII]]::[PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]]) ([A [1, 2, 2], A [1], D [VI,V ], D [VII], E [P (1,V)]]::[PH_ElemTyp [Int] [Int] [Funktion] [Zahlraum_0_10] [Paar Int Zahlraum_0_10]]) 
+[A [1,2,2],A [1],D [VI,V],D [VII],E [P (1,V)]]
+
+
+
+A8
+
+schneide ([Q [1, 2, 2], Q [2, 4], Q [1], S [VI,V ], S [VII]]::[PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]]) ([ Q [1, 2, 2], Q [2, 4,5], Q [1,2],S [X,F] , S [X,F]]:: [PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]])
+[Q [1,2,2]]
+
+
+vereinige ([Q [1, 2, 2], Q [2, 4], Q [1], S [VI,V ], S [VII]]::[PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]]) ([ Q [1, 2, 2], Q [2, 4,5], Q [1,2],S [X,F] , S [X,F]]:: [PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]])
+[Q [1,2,2],Q [2,4],Q [1],S [VI,V],S [VII],Q [1,2,2],Q [2,4,5],Q [1,2],S [X,F],S [X,F]]
+
+
+sind_gleich ([Q [1, 2, 2], Q [2, 4], Q [1], S [VI,V ], S [VII]]::[PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]]) ([ Q [1, 2, 2], Q [2, 4,5], Q [1,2],S [X,F] , S [X,F]]:: [PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]])
+false
+
+ist_leer ([]::[PH_ElemTyp' [Int] [Paar Int Zahlraum_0_10] [Zahlraum_0_10]])
+True

@@ -1,4 +1,5 @@
 module Angabe5 where
+import Data.List
 
 {-# ANN module "HLint: ignore Use camelCase" #-}
 
@@ -9,7 +10,6 @@ module Angabe5 where
 -}
 
 type Nat0 = Int
-
 -- Die selbstdefinierte Typklasse Menge_von:
 
 class Eq a => Menge_von a where
@@ -31,7 +31,7 @@ class Eq a => Menge_von a where
   ist_obermenge xs ys = ist_teilmenge ys xs
   ist_element x xs = anzahl x xs >= 1
   ist_leer xs = xs == leer
-  sind_gleich xs ys = ist_teilmenge xs ys && ist_teilmenge ys xs
+  sind_gleich xs ys = ist_teilmenge xs ys && ist_teilmenge ys xs 
 
 -- Weitere Typen:
 
@@ -125,14 +125,61 @@ createTupel (z, (fkt@(Fkt f)))
 -- Aufgabe A.3
 
 instance Menge_von Int where
-   vereinige int1 int2 =  int1
+   vereinige int1 int2
+      | validArray int1 && validArray int2 = int1 `union` int2
+      | otherwise = error "Fehler"
+   schneide int1 int2
+      | validArray int1 && validArray int2 = int1 `intersect` int2
+      | otherwise = error "Fehler"
+   ziehe_ab int1 int2
+      | validArray int1 && validArray int2 = int1 \\ int2
+      | otherwise = error "Fehler"
+   anzahl el list
+      | count el list > 1 || not(validArray list) = error "Fehler"
+      | otherwise = count el list
+   ist_teilmenge int1 int2
+      | validArray int1 && validArray int2 = null (int1 \\ int2)
+      | otherwise = error "Fehler"
 
-toArray ::  Int -> [Int]
-toArray int = [int]
+count :: Eq a => a -> [a] -> Int
+count x = length . filter (x==)
 
---instance Menge_von Zahlraum_0_10 where
---
---instance Menge_von Funktion where
+validArray :: Eq a => [a] -> Bool
+validArray list = length(list) == length(nub(list))
+
+instance Menge_von Zahlraum_0_10 where
+   vereinige int1 int2
+      | validArray int1 && validArray int2 = int1 `union` int2
+      | otherwise = error "Fehler"
+   schneide int1 int2
+      | validArray int1 && validArray int2 = int1 `intersect` int2
+      | otherwise = error "Fehler"
+   ziehe_ab int1 int2
+      | validArray int1 && validArray int2 = int1 \\ int2
+      | otherwise = error "Fehler"
+   anzahl el list
+      | count el list > 1 || not(validArray list) = error "Fehler"
+      | otherwise = count el list
+   ist_teilmenge int1 int2
+      | validArray int1 && validArray int2 = null (int1 \\ int2)
+      | otherwise = error "Fehler"
+
+instance Menge_von Funktion where
+   vereinige f1 f2
+      | validArray f1 && validArray f2 = f1 `union` f2
+      | otherwise = error "Fehler"
+   schneide f1 f2
+      | validArray f1 && validArray f2 = f1 `intersect` f2
+      | otherwise = error "Fehler"
+   ziehe_ab f1 f2
+      | validArray f1 && validArray f2 = f1 \\ f2
+      | otherwise = error "Fehler"
+   anzahl el list
+      | count el list > 1 || not(validArray list) = error "Fehler"
+      | otherwise = count el list
+   ist_teilmenge f1 f2
+      | validArray f1 && validArray f2 = null (f1 \\ f2)
+      | otherwise = error "Fehler"
 
 {- Knapp, aber gut nachvollziehbar gehen die drei Instanzbildungen fuer
    Menge_von folgendermassen vor:
@@ -141,9 +188,39 @@ toArray int = [int]
 
 -- Aufgabe A.4
 
---instance (Eq a,Eq b) => Menge_von (Paar a b) where
---
---instance Eq a => Menge_von (Baum a) where
+instance (Eq a,Eq b) => Menge_von (Paar a b) where
+   vereinige a b
+      | validArray a && validArray b = a `union` b
+      | otherwise = error "Fehler"
+   schneide a b
+      | validArray a && validArray b = a `intersect` b
+      | otherwise = error "Fehler"
+   ziehe_ab a b
+      | validArray a && validArray b = a \\ b
+      | otherwise = error "Fehler"
+   anzahl el list
+      | count el list > 1 || not(validArray list) = error "Fehler"
+      | otherwise = count el list
+   ist_teilmenge a b
+      | validArray a && validArray b = null (a \\ b)
+      | otherwise = error "Fehler"
+
+instance Eq a => Menge_von (Baum a) where
+   vereinige a b
+      | validArray a && validArray b = a `union` b
+      | otherwise = error "Fehler"
+   schneide a b
+      | validArray a && validArray b = a `intersect` b
+      | otherwise = error "Fehler"
+   ziehe_ab a b
+      | validArray a && validArray b = a \\ b
+      | otherwise = error "Fehler"
+   anzahl el list
+      | count el list > 1 || not(validArray list) = error "Fehler"
+      | otherwise = count el list
+   ist_teilmenge a b
+      | validArray a && validArray b = null (a \\ b)
+      | otherwise = error "Fehler"
 
 {- Knapp, aber gut nachvollziehbar gehen die beiden Instanzbildungen fuer
    Menge_von folgendermassen vor:
@@ -152,9 +229,12 @@ toArray int = [int]
 
 -- Aufgabe A.5
 
---instance Eq a => Eq (ElemTyp a) where
---
---instance Show a => Show (ElemTyp a) where
+instance Eq a => Eq (ElemTyp a) where
+   (==) (ET a1) (ET a2) = a1 == a2
+   (/=) (ET a1) (ET a2) = a1 /= a2
+
+instance Show a => Show (ElemTyp a) where
+   show (ET a) = show(a)
 
 {- Knapp, aber gut nachvollziehbar gehen die beiden Instanzbildungen fuer
    Eq und Show folgendermassen vor:
@@ -163,7 +243,12 @@ toArray int = [int]
 
 -- Aufgabe A.6
 
---instance Eq a => Menge_von (ElemTyp a) where
+instance Eq a => Menge_von (ElemTyp a) where
+   vereinige a b = a `union` b
+   schneide a b = a `intersect` b
+   ziehe_ab a b = a \\ b
+   anzahl el list = count el list
+   ist_teilmenge a b = null (a \\ b)
 
 {- Knapp, aber gut nachvollziehbar geht die Instanzbildung fuer
    Menge_von folgendermassen vor:
@@ -172,7 +257,22 @@ toArray int = [int]
 
 -- Aufgabe A.7
 
---instance (Eq a,Eq b,Eq c,Eq d,Eq e) => Menge_von (PH_ElemTyp a b c d e) where
+instance (Eq a,Eq b,Eq c,Eq d,Eq e) => Menge_von (PH_ElemTyp a b c d e) where
+   vereinige a b
+      | validArray a && validArray b = a `union` b
+      | otherwise = error "Fehler"
+   schneide a b
+      | validArray a && validArray b = a `intersect` b
+      | otherwise = error "Fehler"
+   ziehe_ab a b
+      | validArray a && validArray b = a \\ b
+      | otherwise = error "Fehler"
+   anzahl el list
+      | count el list > 1 || not(validArray list) = error "Fehler"
+      | otherwise = count el list
+   ist_teilmenge a b
+      | validArray a && validArray b = null (a \\ b)
+      | otherwise = error "Fehler"
 
 {- Knapp, aber gut nachvollziehbar geht die Instanzbildung fuer
    Menge_von folgendermassen vor:
@@ -181,7 +281,12 @@ toArray int = [int]
 
 -- Aufgabe A.8
 
---instance (Eq p,Eq q,Eq r) => Menge_von (PH_ElemTyp' p q r) where
+instance (Eq p,Eq q,Eq r) => Menge_von (PH_ElemTyp' p q r) where
+   vereinige a b = a `union` b
+   schneide a b = a `intersect` b
+   ziehe_ab a b = a \\ b
+   anzahl el list = count el list
+   ist_teilmenge a b = null (a \\ b)
 
 {- Knapp, aber gut nachvollziehbar geht die Instanzbildung fuer
    Menge_von folgendermassen vor:
