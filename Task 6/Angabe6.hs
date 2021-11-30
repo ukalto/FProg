@@ -114,9 +114,12 @@ instance Num MatrixF where
   (Mf t1 f1) - (Mf t2 f2)
     | t1 /= t2 || t1 == (0, 0) || t2 == (0, 0) = fehler
     | otherwise = Mf t1 (\z s -> f1 z s - f2 z s)
-  (Mf t1@(z1, s1) f1) * (Mf t2@(z2, s2) f2)
+  {-   (Mf t1@(z1, s1) f1) * (Mf t2@(z2, s2) f2)
     | t1 == (0, 0) || t2 == (0, 0) || s1 /= z2 = fehler
-    | otherwise = Mf t1 (\z s -> sum[f1 z x*f2 x s | x <- [1..s1]])
+    | otherwise = Mf t1 (\z s -> sum[f1 z x*f2 x s | x <- [1..s1]]) -}
+  m1@(Mf (z1,s1) f1) * m2@(Mf (z2,s2) f2) 
+   | s1 == z2 = Mf (z1,s2) (\z s -> multi m1 m2 (z,s) 1)
+   | otherwise = fehler
   negate (Mf t f)
     | t == (0, 0) = fehler
     | otherwise = Mf t (\z s -> (-1) * f z s)
@@ -131,6 +134,14 @@ instance Num MatrixF where
 
 checkZero :: MatrixF -> Bool 
 checkZero (Mf t@(z,s) f) = Mf t (\z s -> if f z s == 0 then 0 else 1) == Mf t (\_ _ -> 1)
+
+multi :: MatrixF -> MatrixF -> (Zeilenzahl,Spaltenzahl) -> Int -> Int
+multi  m1@(Mf (z1,s1) f1) m2@(Mf (z2,s2) f2) (z,s) count 
+  | count < s1 = f1 z count * f2 count s + multi m1 m2 (z,s) (count + 1)
+  | otherwise = f1 z count * f2 count s
+
+matrixToList :: MatrixF -> [[Skalar]]
+matrixToList (Mf (r, c) f) = map (\i -> map (f i) [1 .. c]) [1 .. r]
 {- Knapp, aber gut nachvollziehbar geht die Instanzbildung fuer Num folgendermassen vor:
    ...
 -}
