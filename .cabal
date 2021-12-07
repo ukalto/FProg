@@ -1,0 +1,2 @@
+build-depends:       base ^>=3.6.2.0 --base package
+                   , matrix 
